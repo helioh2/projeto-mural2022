@@ -11,16 +11,18 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.TreeSet;
 
-import br.ufpr.mural.core.Usuario;
+import br.ufpr.mural.core.usuario.Usuario;
 
 /**
  *
  * @author helio
  */
-class InMemoryDatabase {
+class InMemoryDatabase {  // DAO = Data Access Object
         
    //metodos de CRUD no banco de dados
+
     Map<String, Usuario> usuarios = new HashMap<String, Usuario>();
+
 //    Map<Integer, Post> posts = new HashMap();
 //    Map<String, Mural> murais = new HashMap();
     

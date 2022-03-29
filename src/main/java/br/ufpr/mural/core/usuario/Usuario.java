@@ -3,16 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.ufpr.mural.core;
+package br.ufpr.mural.core.usuario;
 
-/**
- *
- * @author Lenovo
- */
+
 public class Usuario {
     
     private String userName;
-    private String name;
 
     public Usuario(String userName) {
         this.userName = userName;
@@ -21,6 +17,10 @@ public class Usuario {
     public String getUserName() {
         return userName;
     }
+
+    
+
+    
     
     
     

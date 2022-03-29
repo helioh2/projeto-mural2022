@@ -11,14 +11,16 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import br.ufpr.mural.core.Usuario;
+import br.ufpr.mural.core.usuario.Usuario;
 
 public class Servidor {
     
-    private static final int PORTA = 1234;
-    private InMemoryDatabase database;
+    private static final int PORTA = 1234; // atributo de classe
+
+    private InMemoryDatabase database; // atributo do objeto
     
     public void iniciar() throws IOException {
+
         ServerSocket socket = new ServerSocket(PORTA);
         database = new InMemoryDatabase();
 
@@ -83,14 +85,15 @@ public class Servidor {
     private ArrayList<String> handleCommand(String command){
         
         ArrayList<String> out_list = new ArrayList<String>();
+
         if (command == null){
             out_list.add(OutputMessage.INVALID_COMMAND.toString());
             return out_list;
         }
-        String command_type = command.split(" ")[0];
+        String command_type = command.split(" ")[0]; //"criar-usuario joao" --> ["criar-usuario", "joao"]
         
         if (command_type.equals(Command.CREATE_USER.toString())){
-            System.out.println(command.split(" ").length);
+            //System.out.println(command.split(" ").length);
             if (command.split(" ").length != 2){
                 out_list.add(OutputMessage.INVALID_COMMAND.toString());
                 return out_list;
@@ -105,6 +108,8 @@ public class Servidor {
                 database.inserirUsuario(user);
                 out_list.add(OutputMessage.SUCCESS.toString());
             }
+
+     
             
             
         } else if (command_type.equals(Command.CREATE_MURAL.toString())){
