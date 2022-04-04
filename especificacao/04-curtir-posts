@@ -24,17 +24,22 @@ ok
 id_1 anuncio joao "Vende-se Livro de Algebra"
 > curtir-post maria 1
 ok
-> listar-curtidas 1
-maria
-> curtir-post jose 1
+> listar-reacoes 1
+maria curtiu
+> odiar-post jose 1
 ok
-> listar-curtidas 1
-jose
-maria
-> descurtir-post maria 1
+> listar-reacoes 1
+jose odiou
+maria curtiu
+> remover-reacao-post maria 1
 ok
-> listar-curtidas 1
-jose
+> listar-reacoes 1
+jose odiou
+> colocar-sem-nocao-post maria 1
+ok
+> listar-reacoes 1
+maria achou sem noção
+jose odiou
 > curtir-post jose 2
 post-nao-encontrado
 > postar-aviso joao "Amanhã não haverá aula de Calculo"
