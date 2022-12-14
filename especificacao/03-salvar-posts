@@ -8,6 +8,8 @@ excluir-salvo <user_name> <id_post>
 
 Testes:
 
+> limpar-banco
+ok
 > criar-usuario joao
 ok
 > criar-usuario maria

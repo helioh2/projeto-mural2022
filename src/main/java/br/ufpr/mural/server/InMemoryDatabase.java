@@ -8,6 +8,7 @@ package br.ufpr.mural.server;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.TreeSet;
 
@@ -19,20 +20,27 @@ import br.ufpr.mural.core.usuario.Usuario;
  */
 class InMemoryDatabase {  // DAO = Data Access Object
         
-   //metodos de CRUD no banco de dados
-
-    Map<String, Usuario> usuarios = new HashMap<String, Usuario>();
-
-//    Map<Integer, Post> posts = new HashMap();
-//    Map<String, Mural> murais = new HashMap();
-    
+   
+	private Map<String, Usuario> usuarios;  // agregação 1 para muitos
+	
+	public InMemoryDatabase() {
+		this.usuarios = new HashMap<>();
+	}
+	
     public void inserirUsuario(Usuario usuario){
-        usuarios.put(usuario.getUserName(), usuario);
+        this.usuarios.put(usuario.getUserName(), usuario);
     }
     
-    public Usuario getUsuario(String userName){
-        return usuarios.get(userName);
+    public Usuario getUsuario(String userNameNovo) {
+    	return this.usuarios.get(userNameNovo);
+//    	for (Usuario usuario: this.usuarios) { // para cada usuario em this.usuarios
+//    		if (userNameNovo.equals(usuario.getUserName())) {
+//    			return usuario;
+//    		}
+//    	}
+//    	return null;
     }
+    
     
     
 }

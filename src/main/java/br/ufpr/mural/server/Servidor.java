@@ -24,6 +24,8 @@ public class Servidor {
         ServerSocket socket = new ServerSocket(PORTA);
         database = new InMemoryDatabase();
 
+        System.out.println("Servidor iniciado.");
+        
         try {
             while (true) {
                 atenderCliente(socket.accept());
@@ -36,7 +38,7 @@ public class Servidor {
     private void atenderCliente(final Socket cliente) {        
         // A ideia basica para atender um cliente é
         //   - ler comando
-        //   - processar comando
+        //   - processar comando  (feito por meio do método tratarComando)
         //   - escrever resposta
         
         new Thread() {
@@ -44,7 +46,7 @@ public class Servidor {
             @Override
             public void run() {
                 
-                ArrayList<String> out_list; //Lista de retorno
+                ArrayList<String> listaDeResultado; //Lista de retorno
         
                 String command = null;
                 
@@ -54,10 +56,10 @@ public class Servidor {
                     Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
                 }
 
-                out_list = handleCommand(command); 
+                listaDeResultado = tratarComando(command); 
                 
                 try {
-                    for (String line: out_list){
+                    for (String line: listaDeResultado){
                         writeLine(cliente.getOutputStream(), line);
                     }
                     
@@ -82,42 +84,58 @@ public class Servidor {
     }
 
 
-    private ArrayList<String> handleCommand(String command){
+    private ArrayList<String> tratarComando(String comando){
         
-        ArrayList<String> out_list = new ArrayList<String>();
+        ArrayList<String> listaDeResultado = new ArrayList<String>();
 
-        if (command == null){
-            out_list.add(OutputMessage.INVALID_COMMAND.toString());
-            return out_list;
+        if (comando == null){
+            listaDeResultado.add("comando-invalido");
+            return listaDeResultado;
         }
-        String command_type = command.split(" ")[0]; //"criar-usuario joao" --> ["criar-usuario", "joao"]
         
-        if (command_type.equals(Command.CREATE_USER.toString())){
+        String tipoComando = comando.split(" ")[0]; //"criar-usuario joao" --> ["criar-usuario", "joao"]
+        
+        if (tipoComando.equals("limpar-banco")) {  //limpeza do banco para testes
+        	this.database = new InMemoryDatabase();
+        	listaDeResultado.add("ok");
+        	return listaDeResultado;
+        }
+        
+        if (tipoComando.equals("criar-usuario")){
             //System.out.println(command.split(" ").length);
-            if (command.split(" ").length != 2){
-                out_list.add(OutputMessage.INVALID_COMMAND.toString());
-                return out_list;
+            if (comando.split(" ").length != 2){
+                listaDeResultado.add("comando-invalido");
+                return listaDeResultado;
             }
-            String userName = command.split(" ")[1];
-            if (userName.length() < 3) {
-                out_list.add(OutputMessage.INVALID_NAME.toString());     
-            } else if (database.getUsuario(userName) != null) {
-                out_list.add(OutputMessage.USER_ALREADY_EXISTS.toString());
-            } else {
-                Usuario user = new Usuario(userName);
-                database.inserirUsuario(user);
-                out_list.add(OutputMessage.SUCCESS.toString());
+            //else:
+            String userName = comando.split(" ")[1];
+            
+            // VERIFICAR SE USUARIO EXISTE:
+            if (database.getUsuario(userName) != null) {
+            	listaDeResultado.add("usuario-ja-existe");
+                return listaDeResultado;
             }
+            
+            // LÓGICA DE NEGÓCIO
+            Usuario user = new Usuario(userName);
+            
+           
+            
+            database.inserirUsuario(user);
+            
+            // RETORNAR SAÍDA
+            listaDeResultado.add("ok");
+            
 
      
             
             
-        } else if (command_type.equals(Command.CREATE_MURAL.toString())){
+        } else if (tipoComando.equals(Command.CREATE_MURAL.toString())){
             // TODO
         }
         //TODO...
         
-        return out_list;
+        return listaDeResultado;
 
     }
 

@@ -15,7 +15,7 @@ HOST = 'localhost'
 PORTA = 1234
 TAM_BUF = 1024
 
-sys.stdout = codecs.getwriter('utf-8')(sys.stdout)
+# sys.stdout = codecs.getwriter('utf-8')(sys.stdout.buffer)
 
 class Caso:
     def __init__(self, comando, saida_esperada):
@@ -58,8 +58,8 @@ class Resumo:
     def imprime(self):
         maior_titulo = max(len(r.titulo) for r in self.resultados) + 1
         for r in self.resultados:
-            print "%s %2d / %2d" % (r.titulo.ljust(maior_titulo), r.acertos, r.casos) 
-        print "%s %2d / %2d" % ("Total".ljust(maior_titulo), self.acertos, self.casos)
+            print("%s %2d / %2d" % (r.titulo.ljust(maior_titulo), r.acertos, r.casos) )
+        print("%s %2d / %2d" % ("Total".ljust(maior_titulo), self.acertos, self.casos))
 
 def leia_teste(entrada):
     def e_teste(linha):
@@ -96,7 +96,7 @@ class Testador:
         self.resumo.imprime()
    
     def execute_teste(self, teste):
-        print "== ", teste.titulo, " =="
+        print("== ", teste.titulo, " ==")
         casos = 0
         acertos = 0
         pool = Pool(processes=self.num_processos)
@@ -111,7 +111,7 @@ class Testador:
             else:
                 imprime_erro(caso.comando, caso.saida_esperada, saida)
 
-        print acertos, "/", casos
+        print(acertos, "/", casos)
         print
         self.resumo.add_resultado(teste.titulo, casos, acertos)          
 
@@ -121,12 +121,13 @@ class Testador:
             teste = leia_teste(entrada)
             entrada.close()
             self.execute_teste(teste)
-        except IOError as (errno, strerror):
-            print "I/O error({0}): {1}".format(errno, strerror)
+        except IOError as e:
+            errno, strerror = e.args
+            print("I/O error({0}): {1}".format(errno, strerror))
             sys.exit(0)
 
     def execute_testes_do_diretorio(self, base):
-        print u"--- Iniciando testes funcionais ---"
+        print("--- Iniciando testes funcionais ---")
         arquivos = os.listdir(base)
         arquivos.sort()
         for arquivo in arquivos:
@@ -145,18 +146,19 @@ def envie_comando_para_o_servidor(comando):
         if not r:
             break;
         else:
-            saida += r
+            saida += r.decode("utf-8")
     s.close()
-    return saida.strip().decode("utf-8").split('\n');
+    return str(saida).strip().split('\n')
+    # return saida.strip().encode("utf-8").split('\n');
 
 def imprime_erro(comando, saida_esperada, saida):
-    print "* " + comando,
-    print "  esperado"
+    print("* " + comando,)
+    print("  esperado")
     for s in saida_esperada:
-        print "   " + s
-    print "  obtido"
+        print("   " + s)
+    print("  obtido")
     for s in saida:
-        print "   " + s
+        print("   " + s)
     print
 
 def execute_caso(caso):
@@ -284,7 +286,7 @@ class CriadorDeTeste:
 
 def execute_teste_funcional():
     testador = Testador()
-    testador.execute_testes_do_diretorio(u'especificacao')
+    testador.execute_testes_do_diretorio("especificacao")
     testador.imprime_resumo()
     print
     return testador.passou_em_todos_os_casos()
@@ -292,30 +294,30 @@ def execute_teste_funcional():
 def execute_teste_de_concorrencia():
     import multiprocessing
     if multiprocessing.cpu_count() == 1:
-        print u"ATENÇÃO: Este computador tem apenas um processador,"
-        print u"         o teste de concorrência pode não ser efetivo!"
-        print u"         Execute os teste de concorrência em um"
-        print u"         computador com múltiplos processadores."
+        print(u"ATENÇÃO: Este computador tem apenas um processador,")
+        print(u"         o teste de concorrência pode não ser efetivo!")
+        print(u"         Execute os teste de concorrência em um")
+        print(u"         computador com múltiplos processadores.")
         print
 
-    print u"--- Iniciando teste de concorrência ---"
+    print(u"--- Iniciando teste de concorrência ---")
 
     for i in range(1, 8):
         num_clientes = 2 ** i
         num_usuarios = num_clientes * 128
         num_mensagens = num_clientes * 256
         num_relacionamentos = num_clientes * 512
-        print u"* Configuração do teste"
-        print u"  Clientes       :", num_clientes
-        print u"  Usuários       :", num_usuarios
-        print u"  Mensagens      :", num_mensagens
-        print u"  Relacionamentos:", num_relacionamentos
-        print u"  Criando testes : ",
+        print(u"* Configuração do teste")
+        print(u"  Clientes       :", num_clientes)
+        print(u"  Usuários       :", num_usuarios)
+        print(u"  Mensagens      :", num_mensagens)
+        print(u"  Relacionamentos:", num_relacionamentos)
+        print(u"  Criando testes : ",)
         sys.stdout.flush()
         testador = Testador(num_clientes)
         criador = CriadorDeTeste()
         testes = criador.criar(num_usuarios, num_relacionamentos, num_mensagens)
-        print "OK"
+        print("OK")
         print
         envie_comando_para_o_servidor("resetar");
         for teste in testes:
@@ -325,9 +327,9 @@ def main():
     if execute_teste_funcional():
         execute_teste_de_concorrencia()
     else:
-        print u"ATENÇÃO: O TESTE DE CONCORRÊNCIA NÃO FOI EXECUTADO!"
-        print u"O teste de concorrência só é executado quando"
-        print u"todos os testes funcionais estão passando."
+        print(u"ATENÇÃO: O TESTE DE CONCORRÊNCIA NÃO FOI EXECUTADO!")
+        print(u"O teste de concorrência só é executado quando")
+        print(u"todos os testes funcionais estão passando.")
 
 if __name__ == "__main__":
     main()

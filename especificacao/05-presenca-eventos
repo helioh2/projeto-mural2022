@@ -9,6 +9,8 @@ listar-eventos-confirmados <user_name>
 
 Testes:
 
+> limpar-banco
+ok
 > criar-usuario joao
 ok
 > criar-usuario maria

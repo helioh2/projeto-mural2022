@@ -8,6 +8,8 @@ remover-lembrete <user_name> <id_lembrete>
 
 Testes:
 
+> limpar-banco
+ok
 > criar-usuario joao
 ok
 > criar-usuario maria

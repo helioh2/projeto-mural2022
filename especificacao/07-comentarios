@@ -8,6 +8,8 @@ excluir-comentario <user_name> <id_post> <id_comentario>
 
 Testes:
 
+> limpar-banco
+ok
 > criar-usuario joao
 ok
 > criar-usuario maria
