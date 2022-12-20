@@ -14,6 +14,8 @@ ok
 ok
 > criar-usuario ab
 nome-invalido
+> criar-usuario pneumoultramicroscopicossilicovulcanocionotico
+nome-invalido
 > criar-usuario
 comando-invalido
 > criar-usuario joao

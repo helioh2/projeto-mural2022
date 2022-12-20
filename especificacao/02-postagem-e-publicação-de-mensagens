@@ -23,28 +23,31 @@ ok
 > listar-murais
 bloco2
 bloco3
-> usar-mural bloco2
-ok
 > criar-usuario joao
 ok
 > criar-usuario jose
 ok
-> postar-anuncio joao "Vende-se Livro de Algebra"
+> login joao
 ok
-> postar-aviso joao "Amanhã não haverá aula de Calculo"
+> usar-mural bloco2
 ok
-> postar-evento joao "Encontro dos Estudantes de Palotina" 08/11/2017 17:00 "Bloco I"
+> postar-anuncio "Vende-se Livro de Algebra"
+ok
+> postar-evento "Encontro dos Estudantes de Palotina" 08/11/2017 17:00 "Bloco I"
 ok
 > postar-anuncio joao    
 mensagem-invalida
+> logout joao
+ok
+> login jose
+ok
 > postar-anuncio maria "Meus amigos me chamam de Mari"
 usuario-nao-encontrado
-> postar-anuncio jose "Chuva de meteoros amanhã"
+> postar-anuncio "Chuva de meteoros amanhã"
 ok
 > listar-posts bloco2
-id_4 anuncio jose "Chuva de meteoros amanhã"
-id_3 evento joao  "Encontro dos Estudantes de Palotina" 08/11/2017 17:00 "Bloco I"
-id_2 aviso joao "Amanhã não haverá aula de Calculo"
+id_3 anuncio jose "Chuva de meteoros amanhã"
+id_2 evento joao  "Encontro dos Estudantes de Palotina" 08/11/2017 17:00 "Bloco I"
 id_1 anuncio joao "Vende-se Livro de Algebra"
 > listar-posts bloco4
 mural-nao-encontrado

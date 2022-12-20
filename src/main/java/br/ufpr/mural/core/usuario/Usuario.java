@@ -8,7 +8,7 @@ package br.ufpr.mural.core.usuario;
 
 public class Usuario {
     
-    private String userName;
+    private String userName;  // identificador
 
     public Usuario(String userName) {
         this.userName = userName;

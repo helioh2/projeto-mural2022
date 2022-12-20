@@ -22,6 +22,7 @@ class InMemoryDatabase {  // DAO = Data Access Object
         
    
 	private Map<String, Usuario> usuarios;  // agregação 1 para muitos
+//	private Map<String, Mural> murais;
 	
 	public InMemoryDatabase() {
 		this.usuarios = new HashMap<>();

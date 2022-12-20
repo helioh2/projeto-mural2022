@@ -14,7 +14,8 @@ import java.util.logging.Logger;
 import br.ufpr.mural.core.usuario.Usuario;
 
 public class Servidor {
-    
+   
+	
     private static final int PORTA = 1234; // atributo de classe
 
     private InMemoryDatabase database; // atributo do objeto
@@ -89,37 +90,41 @@ public class Servidor {
         ArrayList<String> listaDeResultado = new ArrayList<String>();
 
         if (comando == null){
-            listaDeResultado.add("comando-invalido");
+            listaDeResultado.add(Resposta.COMANDO_INVALIDO.toString());
             return listaDeResultado;
         }
         
         String tipoComando = comando.split(" ")[0]; //"criar-usuario joao" --> ["criar-usuario", "joao"]
+ 
         
-        if (tipoComando.equals("limpar-banco")) {  //limpeza do banco para testes
+        if (tipoComando.equals(Comando.LIMPAR_BASE.toString())) {  //limpeza do banco para testes
         	this.database = new InMemoryDatabase();
-        	listaDeResultado.add("ok");
+        	listaDeResultado.add(Resposta.OK.toString());
         	return listaDeResultado;
         }
         
-        if (tipoComando.equals("criar-usuario")){
+        if (tipoComando.equals(Comando.CRIAR_USUARIO.toString())){
             //System.out.println(command.split(" ").length);
             if (comando.split(" ").length != 2){
-                listaDeResultado.add("comando-invalido");
+                listaDeResultado.add(Resposta.COMANDO_INVALIDO.toString());
                 return listaDeResultado;
             }
             //else:
             String userName = comando.split(" ")[1];
             
-            // VERIFICAR SE USUARIO EXISTE:
+            // TODO: testar se tamanho de userName é menor que 3 ou maior que 20
+            
+            
+            // LÓGICA DE NEGÓCIO
+            
+            //   VERIFICAR SE USUARIO EXISTE:
             if (database.getUsuario(userName) != null) {
-            	listaDeResultado.add("usuario-ja-existe");
+            	listaDeResultado.add(Resposta.USUARIO_JA_EXISTE.toString());
                 return listaDeResultado;
             }
             
-            // LÓGICA DE NEGÓCIO
-            Usuario user = new Usuario(userName);
             
-           
+            Usuario user = new Usuario(userName);
             
             database.inserirUsuario(user);
             
@@ -128,9 +133,7 @@ public class Servidor {
             
 
      
-            
-            
-        } else if (tipoComando.equals(Command.CREATE_MURAL.toString())){
+        } else if (tipoComando.equals(Comando.CRIAR_MURAL.toString())){
             // TODO
         }
         //TODO...
