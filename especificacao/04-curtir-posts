@@ -18,33 +18,45 @@ ok
 ok
 > criar-mural bloco2
 ok
+> login joao
+ok
 > usar-mural bloco2
 ok
-> postar-anuncio joao "Vende-se Livro de Algebra"
+> postar-anuncio "Vende-se Livro de Algebra"
+ok
+> postar-anuncio "Amanhã não haverá aula de Calculo"
 ok
 > listar-posts bloco2
+id_2 anuncio joao "Amanhã não haverá aula de Calculo"
 id_1 anuncio joao "Vende-se Livro de Algebra"
-> curtir-post maria 1
+> logout
+ok
+> login maria
+ok
+> curtir-post 1
 ok
 > listar-reacoes 1
 maria curtiu
-> odiar-post jose 1
+> logout
+ok
+> login jose
+ok
+> odiar-post 1
 ok
 > listar-reacoes 1
 jose odiou
 maria curtiu
-> remover-reacao-post maria 1
+> remover-reacao-post 1
 ok
 > listar-reacoes 1
-jose odiou
-> colocar-sem-nocao-post maria 1
+maria curtiu
+> colocar-sem-nocao-post 1
 ok
 > listar-reacoes 1
 maria achou sem noção
 jose odiou
 > curtir-post jose 2
 post-nao-encontrado
-> postar-aviso joao "Amanhã não haverá aula de Calculo"
-ok
+
 > listar-curtidas 2
 nada-a-mostrar
