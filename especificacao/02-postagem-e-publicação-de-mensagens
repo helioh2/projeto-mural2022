@@ -7,7 +7,7 @@ criar-mural <nome_do_mural>
 listar-murais
 usar-mural <nome_do_mural>
 criar-usuario <user_name>
-postar-anuncio/aviso <user_name> <msg>
+postar-anuncio <user_name> <msg>
 postar-evento <user_name> <msg> <data> <hora> <local>
 listar-posts <nome_do_mural>
 excluir-post <user_name> <id_post>
@@ -23,6 +23,10 @@ ok
 > listar-murais
 bloco2
 bloco3
+> listar-posts bloco2
+mural-vazio
+> listar-posts bloco4
+mural-nao-encontrado
 > criar-usuario joao
 ok
 > criar-usuario jose
@@ -33,32 +37,40 @@ ok
 ok
 > postar-anuncio "Vende-se Livro de Algebra"
 ok
-> postar-evento "Encontro dos Estudantes de Palotina" 08/11/2017 17:00 "Bloco I"
+> listar-posts bloco2
+id_1 anuncio joao "Vende-se Livro de Algebra"
+> postar-evento "Encontro dos Estudantes de Jandaia" 08/11/2017 17:00 "Bloco I"
 ok
-> postar-anuncio joao    
+> listar-posts bloco2
+id_2 evento joao "Encontro dos Estudantes de Jandaia" 08/11/2017 17:00 "Bloco I"
+id_1 anuncio joao "Vende-se Livro de Algebra"
+> postar-anuncio
 mensagem-invalida
-> logout joao
+> logout
 ok
 > login jose
 ok
-> postar-anuncio maria "Meus amigos me chamam de Mari"
-usuario-nao-encontrado
 > postar-anuncio "Chuva de meteoros amanhã"
 ok
 > listar-posts bloco2
 id_3 anuncio jose "Chuva de meteoros amanhã"
-id_2 evento joao  "Encontro dos Estudantes de Palotina" 08/11/2017 17:00 "Bloco I"
+id_2 evento joao  "Encontro dos Estudantes de Jandaia" 08/11/2017 17:00 "Bloco I"
 id_1 anuncio joao "Vende-se Livro de Algebra"
-> listar-posts bloco4
-mural-nao-encontrado
-> excluir-post joao 1
+> logout
 ok
-> excluir-post jose 2
+> login joao
+ok
+> excluir-post 1
+ok
+> excluir-post 3
 nao-autorizado
-> excluir-post adm 2
+> logout
 ok
-> excluir-post adm 5
+> login admin
+ok
+> excluir-post 2
+ok
+> excluir-post 5
 post-nao-encontrado
 > listar-posts bloco2
-id4 anuncio jose "Chuva de meteoros amanhã"
-id3 evento joao  "Encontro dos Estudantes de Palotina" 08/11/2017 17:00 "Bloco I"
+id_3 anuncio jose "Chuva de meteoros amanhã"

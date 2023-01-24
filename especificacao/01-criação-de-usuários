@@ -20,3 +20,9 @@ nome-invalido
 comando-invalido
 > criar-usuario joao
 usuario-ja-existe
+> login joao
+ok
+> logout
+ok
+> login jose
+usuario-nao-encontrado
