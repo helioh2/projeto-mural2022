@@ -1,6 +1,9 @@
-package br.ufpr.mural.server;
+package br.ufpr.mural.util;
 
 import java.util.Scanner;
+
+import br.ufpr.mural.server.Comando;
+import br.ufpr.mural.server.MenuEnum;
 
 public class TestesEnum {
 	

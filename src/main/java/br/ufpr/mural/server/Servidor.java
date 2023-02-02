@@ -11,14 +11,16 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import br.ufpr.mural.core.usuario.Usuario;
+import br.ufpr.mural.core.Usuario;
+import br.ufpr.mural.database.DatabaseDao;
+import br.ufpr.mural.database.InMemoryDatabase;
 
 public class Servidor {
    
 	
     private static final int PORTA = 1234; // atributo de classe
 
-    private InMemoryDatabase database; // atributo do objeto
+    private DatabaseDao database; // atributo do objeto
     
     public void iniciar() throws IOException {
 

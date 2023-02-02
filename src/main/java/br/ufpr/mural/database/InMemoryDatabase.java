@@ -2,23 +2,19 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.ufpr.mural.server;
+package br.ufpr.mural.database;
 
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
-import java.util.TreeSet;
 
-import br.ufpr.mural.core.usuario.Usuario;
+import br.ufpr.mural.core.Usuario;
 
 /**
  *
  * @author helio
  */
-class InMemoryDatabase {  // DAO = Data Access Object
+public class InMemoryDatabase /*implements Database*/ {  // DAO = Data Access Object
         
    
 	private Map<String, Usuario> usuarios;  // agregação 1 para muitos
@@ -41,6 +37,8 @@ class InMemoryDatabase {  // DAO = Data Access Object
 //    	}
 //    	return null;
     }
+
+	
     
     
     
