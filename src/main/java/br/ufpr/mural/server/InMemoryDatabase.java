@@ -32,8 +32,8 @@ class InMemoryDatabase {  // DAO = Data Access Object
         this.usuarios.put(usuario.getUserName(), usuario);
     }
     
-    public Usuario getUsuario(String userNameNovo) {
-    	return this.usuarios.get(userNameNovo);
+    public Usuario getUsuario(String userName) {
+    	return this.usuarios.get(userName);
 //    	for (Usuario usuario: this.usuarios) { // para cada usuario em this.usuarios
 //    		if (userNameNovo.equals(usuario.getUserName())) {
 //    			return usuario;
