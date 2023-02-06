@@ -20,7 +20,7 @@ public class Servidor {
 	
     private static final int PORTA = 1234; // atributo de classe
 
-    private DatabaseDao database; // atributo do objeto
+    private InMemoryDatabase database; // atributo do objeto
     
     public void iniciar() throws IOException {
 
@@ -96,7 +96,9 @@ public class Servidor {
             return listaDeResultado;
         }
         
-        String tipoComando = comando.split(" ")[0]; //"criar-usuario joao" --> ["criar-usuario", "joao"]
+        String[] comandoDividido = comando.split(" ");
+        
+        String tipoComando = comandoDividido[0]; //"criar-usuario joao" --> ["criar-usuario", "joao"]
  
         
         if (tipoComando.equals(Comando.LIMPAR_BASE.toString())) {  //limpeza do banco para testes
@@ -105,14 +107,14 @@ public class Servidor {
         	return listaDeResultado;
         }
         
-        if (tipoComando.equals(Comando.CRIAR_USUARIO.toString())){
+        if (tipoComando.equals("criar-usuario")){
             //System.out.println(command.split(" ").length);
-            if (comando.split(" ").length != 2){
+            if (comandoDividido.length != 2){
                 listaDeResultado.add(Resposta.COMANDO_INVALIDO.toString());
                 return listaDeResultado;
             }
             //else:
-            String userName = comando.split(" ")[1];
+            String userName = comandoDividido[1];
             
             // TODO: testar se tamanho de userName é menor que 3 ou maior que 20
             
@@ -137,6 +139,10 @@ public class Servidor {
      
         } else if (tipoComando.equals(Comando.CRIAR_MURAL.toString())){
             // TODO
+        	// COMANDO PARA DAR SPLIT IGNORANDO AS ASPAS
+//        	String comando = "postar-evento \"Encontro dos Estudantes de Jandaia\" 08/11/2017 17:00 \"Bloco I\"";
+//        	comando.split(" (?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)", -1);
+        	
         }
         //TODO...
         
