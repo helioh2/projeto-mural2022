@@ -25,7 +25,7 @@ public interface DatabaseDao {
 	
 	Mural recuperarMural(int idMural);
 	
-void recuperarPosts(Mural mural);
+	void recuperarPosts(Mural mural);
 	
 	void inserirPost(Evento post, Mural mural);
 	

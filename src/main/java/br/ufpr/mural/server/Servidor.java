@@ -7,6 +7,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -17,6 +18,10 @@ import br.ufpr.mural.database.InMemoryDatabase;
 
 public class Servidor {
    
+	
+//	DateTimeFormatter formatador = ...
+			
+	private Usuario usuarioLogado = null;
 	
     private static final int PORTA = 1234; // atributo de classe
 
@@ -40,7 +45,7 @@ public class Servidor {
     
     private void atenderCliente(final Socket cliente) {        
         // A ideia basica para atender um cliente é
-        //   - ler comando
+        //   - ler comando1.7
         //   - processar comando  (feito por meio do método tratarComando)
         //   - escrever resposta
         
@@ -86,7 +91,6 @@ public class Servidor {
         out.write('\n');
     }
 
-
     private ArrayList<String> tratarComando(String comando){
         
         ArrayList<String> listaDeResultado = new ArrayList<String>();
@@ -96,9 +100,9 @@ public class Servidor {
             return listaDeResultado;
         }
         
-        String[] comandoDividido = comando.split(" ");
+        String[] comandoDividido = comando.split(" (?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)", -1); //"criar-usuario joao" --> ["criar-usuario", "joao"]
         
-        String tipoComando = comandoDividido[0]; //"criar-usuario joao" --> ["criar-usuario", "joao"]
+        String tipoComando = comandoDividido[0]; 
  
         
         if (tipoComando.equals(Comando.LIMPAR_BASE.toString())) {  //limpeza do banco para testes
@@ -132,7 +136,7 @@ public class Servidor {
             
             database.inserirUsuario(user);
             
-            // RETORNAR SAÍDA
+            // RETORNAR SAÍDA1.7
             listaDeResultado.add("ok");
             
 
@@ -141,7 +145,17 @@ public class Servidor {
             // TODO
         	// COMANDO PARA DAR SPLIT IGNORANDO AS ASPAS
 //        	String comando = "postar-evento \"Encontro dos Estudantes de Jandaia\" 08/11/2017 17:00 \"Bloco I\"";
-//        	comando.split(" (?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)", -1);
+//        	
+        	String mensagem = comandoDividido[1];
+        	String data = comandoDividido[2];
+        	String hora = comandoDividido[3];
+        	String local = comandoDividido[4];
+        	
+        	String dataHoraStr = data + " " + hora;
+        	
+        	//Datetime..comando;.
+        	
+        	//this.usuarioLogadnull;
         	
         }
         //TODO...
