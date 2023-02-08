@@ -323,8 +323,18 @@ def execute_teste_de_concorrencia():
         for teste in testes:
             testador.execute_teste(teste)
 
+def executa_comando_unico(args_comando):
+
+    comando = " ".join(args_comando)
+    print("\n".join(envie_comando_para_o_servidor(comando)))
+
+
 def main():
-    if execute_teste_funcional():
+
+
+    if len(sys.argv) > 1:
+        executa_comando_unico(sys.argv[1:])
+    elif execute_teste_funcional():
         execute_teste_de_concorrencia()
     else:
         print(u"ATENÇÃO: O TESTE DE CONCORRÊNCIA NÃO FOI EXECUTADO!")
