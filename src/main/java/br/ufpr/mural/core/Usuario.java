@@ -20,6 +20,10 @@ public class Usuario {
         ultimoId++;
     }
 
+    public synchronized static void resetaIds() {
+        ultimoId = 0;
+    }
+
 
     public Usuario(String userName) {
         incrementaId();

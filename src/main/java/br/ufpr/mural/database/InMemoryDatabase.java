@@ -28,10 +28,10 @@ public class InMemoryDatabase implements DatabaseDao {  // DAO = Data Access Obj
 	private Map<String, Usuario> usuarios;  // agregação 1 para muitos
 //	private Map<String, Mural> murais;
 	
-	
 
     public InMemoryDatabase() {
 		this.usuarios = new HashMap<>();
+        // TODO atribuir map de murais
 	}
 	
     public void inserirUsuario(Usuario usuario){
@@ -40,12 +40,6 @@ public class InMemoryDatabase implements DatabaseDao {  // DAO = Data Access Obj
     
     public Usuario getUsuario(String userName) {
     	return this.usuarios.get(userName);
-//    	for (Usuario usuario: this.usuarios) { // para cada usuario em this.usuarios
-//    		if (userNameNovo.equals(usuario.getUserName())) {
-//    			return usuario;
-//    		}
-//    	}
-//    	return null;
     }
 
     /**
@@ -54,132 +48,135 @@ public class InMemoryDatabase implements DatabaseDao {  // DAO = Data Access Obj
 	@Override
 	public void limparBase() {
 		this.usuarios = new HashMap<>();
-		
+        // TODO: limpar murais
+        // RESETANDO GERADORES DE ID:
+        Usuario.resetaIds();
+        // TODO: resetar ids de todas as classes
 	}
 
     @Override
     public void inserirComentario(Comentario comentario, Post post) {
-        // TODO Auto-generated method stub
+        // NÃO PRECISA IMPLEMENTAR
         
     }
 
     @Override
     public void inserirConfirmacaoEvento(Evento evento, Usuario usuario) {
-        // TODO Auto-generated method stub
+        // NÃO PRECISA IMPLEMENTAR
         
     }
 
     @Override
     public void inserirLembrete(Lembrete lembrete, Usuario usuario) {
-        // TODO Auto-generated method stub
+        // NÃO PRECISA IMPLEMENTAR
         
     }
 
     @Override
     public void inserirMural(Mural mural) {
-        // TODO Auto-generated method stub
+        // NÃO PRECISA IMPLEMENTAR
         
     }
 
     @Override
     public void inserirPost(Evento post, Mural mural) {
-        // TODO Auto-generated method stub
+        // NÃO PRECISA IMPLEMENTAR
         
     }
 
     @Override
     public void inserirPost(Anuncio post, Mural mural) {
-        // TODO Auto-generated method stub
+        // NÃO PRECISA IMPLEMENTAR
         
     }
 
     @Override
     public void inserirPostSalvo(Post post, Usuario usuario) {
-        // TODO Auto-generated method stub
+        // NÃO PRECISA IMPLEMENTAR
         
     }
 
     @Override
     public void inserirReacao(Reacao reacao, Post post) {
-        // TODO Auto-generated method stub
+        // NÃO PRECISA IMPLEMENTAR
         
     }
 
     @Override
     public void inserirSugestao(Sugestao sugestao) {
-        // TODO Auto-generated method stub
+        // NÃO PRECISA IMPLEMENTAR
         
     }
 
     @Override
     public List<Comentario> recuperarComentarios(Post post) {
-        // TODO Auto-generated method stub
+        // NÃO PRECISA IMPLEMENTAR
         return null;
     }
 
     @Override
     public List<Evento> recuperarEventosConfirmados(Usuario usuario) {
-        // TODO Auto-generated method stub
+        // NÃO PRECISA IMPLEMENTAR
         return null;
     }
 
     @Override
     public List<Lembrete> recuperarLembretes(Usuario usuario) {
-        // TODO Auto-generated method stub
+        // NÃO PRECISA IMPLEMENTAR
         return null;
     }
 
     @Override
     public Mural recuperarMural(int idMural) {
-        // TODO Auto-generated method stub
+        // NÃO PRECISA IMPLEMENTAR
         return null;
     }
 
     @Override
     public void recuperarPosts(Mural mural) {
-        // TODO Auto-generated method stub
+        // NÃO PRECISA IMPLEMENTAR
         
     }
 
     @Override
     public List<Post> recuperarPostsSalvos(Usuario usuario) {
-        // TODO Auto-generated method stub
+        // NÃO PRECISA IMPLEMENTAR
         return null;
     }
 
     @Override
     public List<Reacao> recuperarReacoes(Post post) {
-        // TODO Auto-generated method stub
+        // NÃO PRECISA IMPLEMENTAR
         return null;
     }
 
     @Override
     public List<Sugestao> recuperarSugestoesFeitas(Usuario usuario) {
-        // TODO Auto-generated method stub
+        // NÃO PRECISA IMPLEMENTAR
         return null;
     }
 
     @Override
     public List<Sugestao> recuperarSugestoesPost(Post post) {
-        // TODO Auto-generated method stub
+        // NÃO PRECISA IMPLEMENTAR
         return null;
     }
 
     @Override
     public List<Sugestao> recuperarSugestoesRecebidas(Usuario usuario) {
-        // TODO Auto-generated method stub
+        // NÃO PRECISA IMPLEMENTAR
         return null;
     }
 
     @Override
     public void removerConfirmacaoEvento(Evento evento, Usuario usuario) {
-        // TODO Auto-generated method stub
+        // NÃO PRECISA IMPLEMENTAR
         
     }
 
     @Override
     public void removerReacao(Reacao reacao, Post post) {
-        // TODO Auto-generated method stub
+        // NÃO PRECISA IMPLEMENTAR
         
     }
 
