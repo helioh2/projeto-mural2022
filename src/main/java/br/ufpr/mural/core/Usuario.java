@@ -10,11 +10,20 @@ import java.util.List;
 
 public class Usuario {
     
+    private int id;
     private String userName;  // identificador
     private List<Post> postsSalvos;
     
+    private static int ultimoId = 0;
+
+    private synchronized static void incrementaId() {
+        ultimoId++;
+    }
+
 
     public Usuario(String userName) {
+        incrementaId();
+        this.id = ultimoId;
         this.userName = userName;
         this.postsSalvos = new ArrayList<>();
     }
@@ -31,7 +40,13 @@ public class Usuario {
     	this.postsSalvos.add(post);
     }
 
-    
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     
     

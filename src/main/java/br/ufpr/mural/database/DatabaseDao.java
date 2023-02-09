@@ -16,6 +16,8 @@ import br.ufpr.mural.core.Usuario;
  *
  */
 public interface DatabaseDao {
+	
+	void limparBase();
 
 	void inserirUsuario(Usuario usuario);
 	

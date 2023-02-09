@@ -25,8 +25,18 @@ public class Servidor {
 	
     private static final int PORTA = 1234; // atributo de classe
 
-    private InMemoryDatabase database; // atributo do objeto
+    private DatabaseDao database; // atributo do objeto
     
+    
+    /**
+     * Injetando database específico
+     * @param database
+     */
+    public Servidor(DatabaseDao database) {
+        this.database = database;
+    }
+
+
     public void iniciar() throws IOException {
 
         ServerSocket socket = new ServerSocket(PORTA);
@@ -106,7 +116,7 @@ public class Servidor {
  
         
         if (tipoComando.equals(Comando.LIMPAR_BASE.toString())) {  //limpeza do banco para testes
-        	this.database = new InMemoryDatabase();
+        	this.database.limparBase(); // CHAMA MÉTODO QUE LIMPA BASE NO PRÓPRIO OBJETO database
         	listaDeResultado.add(Resposta.OK.toString());
         	return listaDeResultado;
         }
@@ -158,6 +168,14 @@ public class Servidor {
         	//this.usuarioLogadnull;
         	
         }
+
+//        else if (tipoComando.equals(Comando.CRIAR_POST.toString()) {
+//            //Mural...
+//
+//
+//            mural.addPost(anuncio);
+//            database.inserirPost(anuncio, mural); // para quem está fazendo BD
+//        }
         //TODO...
         
         return listaDeResultado;

@@ -142,7 +142,7 @@ class JdbcSqlDatabaseDao implements DatabaseDao {  // DAO = Data Access Object
 
 	@Override
 	public void inserirReacao(Reacao reacao, Post post) {
-		// TODO Auto-generated method stub
+		//"INSERT ... INTO reacao_post"
 		
 	}
 
@@ -229,6 +229,12 @@ class JdbcSqlDatabaseDao implements DatabaseDao {  // DAO = Data Access Object
 	        }
 	    }
 }
+
+	@Override
+	public void limparBase() {
+		// TODO Auto-generated method stub
+		
+	}
     
 }
 
