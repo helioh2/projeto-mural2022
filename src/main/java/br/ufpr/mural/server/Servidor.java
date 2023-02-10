@@ -156,12 +156,12 @@ public class Servidor {
         	// COMANDO PARA DAR SPLIT IGNORANDO AS ASPAS
 //        	String comando = "postar-evento \"Encontro dos Estudantes de Jandaia\" 08/11/2017 17:00 \"Bloco I\"";
 //        	
-        	String mensagem = comandoDividido[1];
-        	String data = comandoDividido[2];
-        	String hora = comandoDividido[3];
-        	String local = comandoDividido[4];
+        	// String mensagem = comandoDividido[1];
+        	// String data = comandoDividido[2];
+        	// String hora = comandoDividido[3];
+        	// String local = comandoDividido[4];
         	
-        	String dataHoraStr = data + " " + hora;
+        	// String dataHoraStr = data + " " + hora;
         	
         	//Datetime..comando;.
         	
