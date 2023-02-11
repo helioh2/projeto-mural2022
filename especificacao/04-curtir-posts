@@ -55,7 +55,7 @@ ok
 > listar-reacoes 1
 jose achou sem noção
 maria curtiu
-> curtir-post 2
+> curtir-post 3
 post-nao-encontrados
-> listar-curtidas 2
+> listar-curtidas 3
 nada-a-mostrar
